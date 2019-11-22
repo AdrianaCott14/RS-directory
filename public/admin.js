@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#admin',
   data: {
     title: "",
-    description: "",
+    apt: "",
     file: null,
     addItem: null,
     items: [],
@@ -28,7 +28,7 @@ var app = new Vue({
         let r1 = await axios.post('/api/photos', formData);
         let r2 = await axios.post('/api/items', {
           title: this.title,
-          description: this.description,
+          apt: this.apt,
           path: r1.data.path
         });
         this.addItem = r2.data;
@@ -66,7 +66,7 @@ var app = new Vue({
       try {
         let response = await axios.put("/api/items/" + item._id, {
           title: this.findItem.title,
-          description: this.findItem.description,
+          apt: this.findItem.apt,
         });
         this.findItem = null;
         this.getItems();

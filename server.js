@@ -29,7 +29,7 @@ mongoose.connect('mongodb://localhost:27017/museum', {
 const itemSchema = new mongoose.Schema({
   title: String,
   path: String,
-  description: String,
+  apt: String,
 });
 
 // Create a model for items in the museum.
@@ -53,7 +53,7 @@ app.post('/api/items', async (req, res) => {
   const item = new Item({
     title: req.body.title,
     path: req.body.path,
-    description: req.body.description,
+    apt: req.body.apt,
   });
   try {
     await item.save();
@@ -91,7 +91,7 @@ app.put('/api/items/:id', async (req, res) => {
   try {
     let item = await Item.findOne({_id:req.params.id});
     item.title = req.body.title;
-    item.description = req.body.description; 
+    item.apt = req.body.apt; 
     item.save();
     res.send(item);
   } catch (error) {
